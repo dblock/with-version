@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 require 'with-version/version'
 
@@ -12,5 +14,5 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.homepage = 'http://github.com/dblock/with-version'
   s.licenses = ['MIT']
-  s.summary = 'Elegant inline version checks.'
+  s.summary = 'Syntax sugar for version checks.'
 end
