@@ -1,5 +1,6 @@
 ### 0.1.1 (Next)
 
+* Include pre-release Ruby versions in `with_minimum_ruby` - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 ### 0.1.0 (1/13/2020)

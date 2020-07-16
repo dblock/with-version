@@ -27,7 +27,7 @@ class Example
 end
 ```
 
-```ruby 
+```ruby
 # Ruby 2.3.0
 undefined method `dig' for #<Example:0x00007fca9388a8a0> (NoMethodError)
 ```
@@ -35,6 +35,24 @@ undefined method `dig' for #<Example:0x00007fca9388a8a0> (NoMethodError)
 ```ruby
 # Ruby 2.4.0
 Digging x, y ...
+```
+
+It will automatically handle pre-release versions differently from when using `Gem::Version`, which is something developers often don't consider.
+
+```ruby
+Gem::Version.new('2.4.0.pre') >= Gem::Version.new('2.4.0') # false
+```
+
+```ruby
+require 'with-version'
+
+class Example
+  include With::Version::Ruby
+
+  with_minimum_ruby '2.4.0' do
+    # also true if RUBY_VERSION = 2.4.0.pre
+  end
+end
 ```
 
 ## Contributing

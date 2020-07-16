@@ -23,6 +23,7 @@ module With
         attr_accessor :segments
 
         def initialize(version)
+          @version = version
           @segments = split_to_segments(version)
         end
 
@@ -49,6 +50,20 @@ module With
           end
 
           0
+        end
+
+        def prerelease?
+          !!(@version =~ /[a-zA-Z]/)
+        end
+
+        def release
+          if prerelease?
+            segments = @segments.dup
+            segments.pop while segments.any? { |s| String === s }
+            self.class.new segments.join('.')
+          else
+            self
+          end
         end
 
         private

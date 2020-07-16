@@ -41,4 +41,19 @@ describe With::Version::Ruby do
       expect(@versions.sort).to eq([PREV_VERSION, RUBY_VERSION])
     end
   end
+
+  RELEASE_VERSION = Gem::Version.new(RUBY_VERSION).release.to_s
+  PRE_RELEASE_VERSION = Gem::Version.new(RELEASE_VERSION + '.pre1').to_s
+
+  context PRE_RELEASE_VERSION do
+    it 'includes includes pre-release' do
+      extend With::Version::Ruby::ClassMethods
+      stub_const('RUBY_VERSION', PRE_RELEASE_VERSION)
+      version_included = nil
+      with_minimum_ruby(RELEASE_VERSION) do
+        version_included = RUBY_VERSION
+      end
+      expect(version_included).to eq PRE_RELEASE_VERSION
+    end
+  end
 end

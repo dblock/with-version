@@ -11,7 +11,7 @@ module With
 
       module ClassMethods
         def with_minimum_ruby(version)
-          if With::Version::Ruby::Version.new(RUBY_VERSION) >= With::Version::Ruby::Version.new(version)
+          if With::Version::Ruby::Version.new(RUBY_VERSION).release >= With::Version::Ruby::Version.new(version)
             yield
           end
         end
